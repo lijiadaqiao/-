@@ -30,6 +30,7 @@
   系统用户级别：~/.gitconfig  
 # git 提交本地仓库命令
  wq  退出
+ cat 文件名： 查看内容
  git status：状态查询
  git add */文件名：存放到暂存区
  git rm --cached 文件名  ：从暂存区恢复到之前的状态
@@ -88,3 +89,69 @@
     提交对象及其父对象形成链条
     新建分支其实是新建一个指针，指向原来的文件
     切换分支是移动指针
+# 协同开发
+* 同一个团队
+  1. 克隆clone
+    git clone 地址
+      把完整远程库下载到本地
+      创建origin远程地址别名
+      初始化本地厂库
+    pull 拉取一次有下面两个功效
+      fetch 【远程地址别名，远程分支名】远程下载到本地
+      merge 【远程地址别名/远程分支名】合并
+  2. 邀请成员
+      仓库=》setting=》collaborators 填入要邀请人的账号 复制邀请的连接发送给他
+  3. 解决冲突
+    不是最新版做的修改，不能推送，必须先拉取
+    拉取下来先解决冲突
+* 不同团队
+  1. fork 
+    登录站好进入需要克隆的账号仓库，点击fork，会克隆到自己的仓库
+  2. clone到本地
+    进行操作，推送到远程库
+  3. pull Request
+    new pull Request
+    create pull Request
+    发消息给仓库创建者
+  4. 仓库创建者点pull Request 
+    点击内容，查看发过来的消息
+    可以对话
+  5. 审核代码
+    commits和files changed查看提交代码和说明
+  6. 合并merge pull request
+    填写 合并说明 确认合并
+  7. 把远程库拉取到本地pull
+# ssh 方式
+  ssh-keygen -t rsa -C 邮箱名 //生成到用户文件夹下
+  cd .ssh/
+  ll
+  cat id_rsa.pub
+  复制内容
+  复制到github stting=> ssh and gpg keys=>key
+# eclipse 中git用法
+  1. 将工程初始化为本地库
+    工程=》右键=》Team=》share project =》git=》use or create……=》选中工程=>create repository=》finsh
+  2. 设置别名
+    add entry=》user.name  user.email
+  3. 图标意义
+    label decoration 
+      金色圆柱加> 表示有被提交的修改
+      金色圆柱加  表示没有被提交的修改
+      ？             新建文件，还没有对他追踪
+      什么图标都没有  忽略的文件
+      *             添加到暂存区
+      +             新建文件从没有追踪到对他进行追踪
+  4. eclipse 中忽略文件
+    概念：为管理创建工程而维护的文件
+      .classpath文件
+      .project 文件
+      .settings目录下所有文件
+    为什么忽略
+      同一个团队，用的版本不同，会冲突
+# git 工作流
+  master
+  hotfix热修复分支 master出现bug在此分支修复，合并到master和develop
+  release预发布分支 develop提交的出现bug在此分支修复，合并到master和develop
+  develop 开发分支
+  小功能分支 开发完成合并到develop
+# gitlab服务器搭建 内外网使用

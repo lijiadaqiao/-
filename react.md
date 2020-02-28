@@ -314,7 +314,7 @@ https://www.lodashjs.com/
 https://immutable-js.github.io/immutable-js/
 yarn add immutable
 
-Map,List,fromJS
+Map,List,fromJS 复杂的数据用fromJS
 
 imState.get('courses').get(0)
 imState.getIn(['courses',2])
@@ -322,9 +322,15 @@ imState.getIn(['courses',2])
 imState.setIn(['obj','y','z'],100)
 imState.updateIn(['obj','y','z'],v=>v+1)
 newImState.getIn(['obj','y','z'])
-imState.toJS().obj.y.z
+imState.toJS().obj.y.z  转化为JS取值
 
-比较 A.equals(B)   或 is.(a,b)
+比较 A.equals(B)   或 is(a,b)
 
 # mobax 
 yarn add mobx mobx-react
+
+
+# 刷新后自动选择刷新之前的选项
+const selectedKeyArr=this.props.location.pathname.split('/')
+selectedKeyArr.length=3
+selectedKeys={[selectedKeyArr.join('/')]}55
